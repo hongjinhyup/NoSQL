@@ -1,0 +1,13 @@
+Day 1_2022.4.13.Wed.
+
+<Search for data in collection which is called a table in Mysql.
+select * from inventory == db.inventory.find({})
+
+<Search for data with a condition, which is a status in field key 'column' area and value should be a String type "D".>
+select * from inventory where status "D" == db.inventory.find({status:"D"})
+
+
+select * from inventory where status in ("A", "D") == db.inventory.find({status:"D"})
+select * from inventory where status = "A" AND qty<30 == db.inventory.find({status:"A", qty{lt:30}})
+select * from inventory where status = "A" OR qty<30 == db.inventory.find({$or:[{status:"A"}, {qty:{lt:30}}]})
+select * from inventory where status = "A" AND (qty<30 OR item LIKE "p%") == db.inventory.find({status:"A", $or:[{qty:{$lt:30}},{item:/^p/}]})
